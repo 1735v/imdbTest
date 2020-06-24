@@ -9,6 +9,9 @@ class SearchMovieTest(unittest.TestCase):
     def setUp(self):
         print('Test start '+ str(requests.get('http://www.omdbapi.com/').status_code))
 
+    #перевірка формату
+
+
     #перевіряєм чи знаходить фільм по точній назві
     def test_search_movie(self):
         self.assertEqual(search_movie('Knives Out')['Title'],'Knives Out')
@@ -29,6 +32,9 @@ class SearchMovieTest(unittest.TestCase):
         page1 = search_movie_pages('Knives')['Search'][1]
         page2 = search_movie_pages('Knives','2')['Search'][1]
         self.assertFalse(page1==page2)
+
+    def test_search_movie_ratings(self):
+        self.assertIsInstance(search_movie_ratings('Knives Out'),float)
 
     def tearDown(self):
         print('test finished')
