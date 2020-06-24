@@ -1,4 +1,5 @@
 from .req import *
+from .req2 import *
 import unittest
 import requests
 
@@ -43,8 +44,17 @@ class SearchMovieTest(unittest.TestCase):
     def tearDown(self):
         print('test finished')
 
+class SearchWeatherTest(unittest.TestCase):
 
+    def test_check_weather(self):
+        my_city = 'Lviv'
+        city = check_weather(my_city)['city_name']
+        self.assertEqual(my_city,city)
 
+    def test_check_bad_name(self):
+        my_city='asdaaa'
+        city = check_weather(my_city)
+        self.assertEqual(city,'Incorect city name')
 
 if __name__ == '__main__':
     unittest.main()
